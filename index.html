@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFolio - আপনার ডিজিটাল পরিচয়</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #020617; color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-gradient { background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-image: linear-gradient(to right, #818cf8, #c084fc, #f472b6); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.5); }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+    </div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="glass mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-4 rounded-2xl">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-code text-primary text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">Dev<span class="text-primary">Folio</span></span>
+                </div>
+                <div>
+                    <button onclick="openModal()" class="bg-primary hover:bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-semibold transition-all">
+                        সাইন আপ করুন
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative z-10 pt-40 pb-20 px-4 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+            ডেভেলপারদের জন্য <br>
+            <span class="text-gradient">স্মার্ট পোর্টফোলিও</span>
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mb-10">আপনার স্কিল এবং প্রজেক্ট শেয়ার করুন Firebase ব্যাকএন্ডের মাধ্যমে।</p>
+        <button onclick="openModal()" class="bg-white text-darker px-8 py-4 rounded-xl font-bold text-lg shadow-lg">
+            আপনার পেজ তৈরি করুন <i class="fa-solid fa-arrow-right ml-2"></i>
+        </button>
+    </section>
+
+    <div id="signupModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="glass relative w-full max-w-md mx-4 p-8 rounded-2xl border border-slate-700 shadow-2xl" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-2">যোগ দিন DevFolio-তে</h3>
+            
+            <form id="signupForm" class="space-y-4 mt-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">আপনার নাম</label>
+                    <input type="text" id="regName" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-primary" placeholder="নাম">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">ইউজারনেম</label>
+                    <input type="text" id="regUsername" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-primary" placeholder="username">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">ইমেইল</label>
+                    <input type="email" id="regEmail" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-primary" placeholder="email@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1">পাসওয়ার্ড</label>
+                    <input type="password" id="regPassword" required class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-primary" placeholder="******">
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-primary hover:bg-indigo-600 text-white font-bold py-3 rounded-lg transition-all">
+                    প্রোফাইল তৈরি করুন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // আপনার দেওয়া কনফিগ
+        const firebaseConfig = {
+            apiKey: "AIzaSyATOBjGhHhSwlAvIVFrR3b5m0A6l7hwBSo",
+            authDomain: "about-me-e69b0.firebaseapp.com",
+            projectId: "about-me-e69b0",
+            storageBucket: "about-me-e69b0.firebasestorage.app",
+            messagingSenderId: "558282224582",
+            appId: "1:558282224582:web:946ae6644e313e0fd678c7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // ফর্ম সাবমিট হ্যান্ডলার
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "প্রসেসিং...";
+            btn.disabled = true;
+
+            const name = document.getElementById('regName').value;
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+
+            try {
+                // ১. Authentication এ ইউজার তৈরি
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // ২. Firestore ডাটাবেজে ইউজারের তথ্য সেভ করা
+                await setDoc(doc(db, "users", user.uid), {
+                    fullName: name,
+                    username: username,
+                    email: email,
+                    uid: user.uid,
+                    joinedAt: new Date().toISOString()
+                });
+
+                alert("অভিনন্দন! আপনার প্রোফাইল তৈরি হয়েছে।");
+                document.getElementById('signupForm').reset();
+                closeModal();
+            } catch (error) {
+                console.error(error);
+                alert("এরর: " + error.message);
+            } finally {
+                btn.innerText = "প্রোফাইল তৈরি করুন";
+                btn.disabled = false;
+            }
+        });
+    </script>
+
+    <script>
+        // Modal UI Logic
+        const modal = document.getElementById('signupModal');
+        function openModal() { modal.classList.remove('hidden'); }
+        function closeModal() { modal.classList.add('hidden'); }
+        
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) nav.firstElementChild.classList.add('shadow-xl', 'border-slate-700');
+            else nav.firstElementChild.classList.remove('shadow-xl', 'border-slate-700');
+        });
+    </script>
+</body>
+</html>
